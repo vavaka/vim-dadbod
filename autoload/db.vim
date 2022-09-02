@@ -147,7 +147,7 @@ endfunction
 let s:temp_content = {}
 function! s:temp_content(str) abort
   let key = '=' . a:str
-  if !has_key(s:temp_content, key)
+  if !has_key(s:temp_content, key) || !filereadable(s:temp_content[key])
     let f = tempname()
     call writefile(split(a:str, "\n", 1), f, 'b')
     let s:temp_content[key] = f
